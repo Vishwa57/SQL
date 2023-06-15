@@ -40,7 +40,7 @@ create table something(column_name int, col2 varchar(23) );
 Drop table something     --Drop table something; 
 						 --#we can include ';' since it won't change anything
 
---					#Constraints
+--			#Constraints
 
 create table emp1	-- primary key where the values uniquely identifies the rows
 (	emp_id int Primary key,	 
@@ -83,7 +83,7 @@ create table emp4	-- primary key where the values uniquely identifies the rows
 	salary int,
 	age int unique,	-- values should be unique
 	constraint p_key2 Primary key (emp_id, salary), -- key value #p_key2 should be unique
-);													-- in every database
+);							-- in every database
 
 --  METHOD #3
 
@@ -110,7 +110,7 @@ alter table emp6 add constraint p_key3 primary key(emp_id)
 
 alter table emp6 drop constraint p_key3  -- #it will drop the constraints
 
---							#FORIEGN KEY 
+--					#FORIEGN KEY 
 
 -- one table gets linked with another table by references
 
@@ -151,7 +151,7 @@ on delete cascade
 
 --this will delete the child table as well when parent table is getting deleted
 
---									#VIEW
+--					#VIEW
 
 /*
 use Practice_DB

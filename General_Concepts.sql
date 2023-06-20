@@ -74,3 +74,51 @@ Note that if there are matching rows between the two tables, those will appear o
 */
 
 
+create procedure pdb_storedProcedure
+as
+select * from employee
+Go
+
+  -- same as
+/*
+create proc pdb_storedProcedure1
+as
+select * from employee
+Go
+*/
+
+exec pdb_storedProcedure 
+
+pdb_storedProcedure
+
+create proc stp1
+	@ecode int,
+	@mgr int
+as
+select * from EMPLOYEE
+where Empcode = @ecode and Manager = @mgr
+go
+
+stp1 @ecode = 9369, @mgr = 7902
+
+exec stp1 @ecode = 9369, @mgr = 7902
+
+exec stp1 -- ERROR : Procedure or function 'stp1' expects parameter '@ecode', 
+		  -- which was not supplied.
+
+-- # If we donot want to have this error then, provide NULL
+
+create proc stp2
+	@ecode int = NULL,
+	@mgr int = NULL
+as
+select * from EMPLOYEE
+where Empcode = @ecode and Manager = @mgr
+go
+/*
+In MySQL, a stored procedure is a set of SQL statements that are stored in the database and 
+can be called and executed as a single unit. Stored procedures provide a way to encapsulate
+complex logic or frequently used tasks, making them easier to manage and reuse.
+*/
+
+

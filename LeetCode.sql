@@ -181,3 +181,39 @@ from Visits a left join Transactions b
 on a.visit_id = b.visit_id 
 where b.transaction_id is NULL
 group by customer_id
+
+/*
+Weather table:
++----+------------+-------------+
+| id | recordDate | temperature |
++----+------------+-------------+
+| 1  | 2015-01-01 | 10          |
+| 2  | 2015-01-02 | 25          |
+| 3  | 2015-01-03 | 20          |
+| 4  | 2015-01-04 | 30          |
++----+------------+-------------+
+Output: 
++----+
+| id |
++----+
+| 2  |
+| 4  |
++----+
+Explanation: 
+In 2015-01-02, the temperature was higher than the previous day (10 -> 25).
+In 2015-01-04, the temperature was higher than the previous day (20 -> 30).
+
+Write an SQL query to find all dates' Id with higher temperatures compared to its previous dates (yesterday).
+
+Return the result table in any order.
+*/
+
+select  b.id
+from weather a inner join weather b
+on date_add(a.recorddate, interval 1 day)=b.recorddate
+where a.temperature < b.temperature
+
+select a.id
+from weather a inner join weather b
+on datediff(a.recorddate, b.recorddate)=1
+where a.temperature > b.temperature
